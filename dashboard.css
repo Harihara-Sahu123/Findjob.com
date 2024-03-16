@@ -1,0 +1,197 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.b{
+  background: #ffffff;
+}
+.co{
+  display: flex;
+  background: #dcc9e7bb;
+}
+.n{
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  background: #30cded;
+  width: 280px;
+  overflow: hidden;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.l{
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+}
+.l img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.l span{
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.w{
+  position: relative;
+  color: rgb(7, 7, 0);
+  font-size: 14px;
+  display: table;
+  width: 280px;
+  padding: 10px;
+}
+.n .fas{
+  position: relative;
+  width: 70px;
+  height: 40px;
+  top: 14px;
+  font-size: 20px;
+  text-align: center;
+}
+.na-item{
+  position: relative;
+  top: 12px;
+  margin-left: 10px;
+}
+.w:hover{
+  background: #ccfffc;
+}
+.logout{
+  position: absolute;
+  bottom: 0;
+  width: 235px;
+  height: 40px;
+  background: #89f212;
+}
+
+/* Main Section */
+.m{
+  position: relative;
+  padding: 20px;
+  width: 100%;
+}
+.m-top{
+  display: flex;
+  width: 100%;
+}
+.m-top i{
+  position: absolute;
+  right: 0;
+  margin: 20px 30px;
+  color: rgb(22, 2, 17);
+  cursor: pointer;
+}
+.m-skills{
+  display: flex;
+  margin-top: 20px;
+}
+.m-skills .card{
+  width: 32%;
+  margin: 10px;
+  background: #f2ebf1;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 30px 35px rgba(1, 0, 0, 0.91);
+}
+.m-skills .card h3{
+  margin: 30px;
+  text-transform: capitalize;
+}
+.m-skills .card p{
+  font-size: 12px;
+}
+.m-skills .card button{
+  background: #007bff;
+  color: #380505;
+  padding: 7px 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.m-skills .card button:hover{
+  background: rgba(223, 15, 195, 0.953);
+}
+.m-skills .card i{
+  font-size: 22px;
+  padding: 10px;
+}
+
+/* Courses */
+.m-course{
+  margin-top:20px ;
+  text-transform: capitalize;
+}
+.course-box{
+  width: 100%;
+  height: 300px;
+  padding: 10px 10px 30px 10px;
+  margin-top: 10px;
+  background: #b0f8fdf2;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.course-box ul{
+  list-style: none;
+  display: flex;
+}
+.course-box ul li{
+  margin: 10px;
+  color: rgb(19, 18, 18);
+  cursor: pointer;
+}
+.course-box ul .active{
+  color: #5af5d9;
+  border-bottom: 1px solid #4012e4;
+}
+.course-box .course{
+  display: flex;
+}
+.box{
+  width: 33%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background: rgb(235, 233, 233);
+  box-shadow: 0 20px 35px rgba(81, 8, 8, 0.53);
+}
+.box p{
+  font-size: 12px;
+  margin-top: 5px;
+}
+.box button{
+  background: rgb(37, 235, 242);
+  color: #fff;
+  padding: 7px 10px;
+  border-radius: 10px;
+  margin-top: 3rem;
+  cursor: pointer;
+}
+.box button:hover{
+  background: rgba(0, 0, 0, 0.842);
+}
+.box i{
+  font-size: 7rem;
+  float: right;
+  margin: -20px 20px 20px 0;
+}
+.html{
+  color: rgb(25, 94, 54);
+}
+.css{
+  color: rgb(104, 179, 35);
+}
+.js{
+  color: rgb(28, 98, 179);
+}
