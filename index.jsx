@@ -1,178 +1,98 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "../Signup/styles.css";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import "../intro/intro.css";
+import { Link } from "react-router-dom";
+import axios from "../../connector";
+import { CurrentUserContext } from "../../index";
+import Header from "../header";
 
-const Signup = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    confirmPassword: "", // Add confirmPassword field
-    mobile: "",
-    dob: "",
-    gender: "",
-  });
+const IntroPage = (props) => {
+  const { currentUser } = useContext(CurrentUserContext);
+  const [introContent, setIntroContent] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  useEffect(() => {
+    // fetchData();
+  }, []);
 
-  const signupService = async (values) => {
+  const fetchData = async () => {
     try {
-      setIsLoading(true);
-      const url = "http://localhost:5000/user/signup";
-      const { data } = await axios.post(url, values);
-      const { status, cls, msg, payload } = data;
-      setIsLoading(false);
-      console.log("API Response:", data);
-      if (status === "success") {
-        // Registration successful, navigate to the thank you page
-        console.log("Navigating to /user/signup/thankyou"); // Add this line for debugging
-        navigate("/user/signup/thankyou");
-      } else {
-        alert("Registration failed. " + msg);
-      }
-    } catch (e) {
-      setIsLoading(false);
-      console.error("Error", e);
+      const response = await axios.get("/intro");
+      const data = response.data;
+      setIntroContent(data.payload);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
     }
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-
-    // Check if passwords match before making the API call
-    if (formData.password !== formData.confirmPassword) {
-      setIsLoading(false);
-      alert("Password and confirmation do not match.");
-    } else {
-      // Remove confirmPassword from the data sent to the API
-      const { confirmPassword, ...dataToSend } = formData;
-      signupService(dataToSend);
-    }
-  };
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
   };
 
   return (
-    <div>
-      <div className="container">
-        <div className="signup-container">
-          <h1 style={{ color: "#225183" }}>Sign Up</h1>
-          <h1>
-            <img src={process.env.PUBLIC_URL + '/logo.jpg'} alt="Logo" />
-          </h1>
-          <h2 style={{ color: "#225183", textAlign: "center" }}>
-            Welcome To Find Job Community
-          </h2>
-          <form className="signup-form" onSubmit={handleFormSubmit}>
-            <input
-              type="text"
-              placeholder="Full Name"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="tel"
-              placeholder="Enter your mobile number"
-              name="mobile"
-              value={formData.mobile}
-              onChange={handleInputChange}
-            />
-            <input
-              type="date"
-              placeholder="Enter your Date of Birth"
-              name="dob"
-              value={formData.dob}
-              onChange={handleInputChange}
-            />
-            <label style={{ color: "black" }}>Gender:</label>
-            <input
-              type="radio"
-              id="male"
-              name="gender"
-              value="male"
-              checked={formData.gender === "male"}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="male" style={{ color: "black" }}>
-              Male
-            </label>
-            <input
-              type="radio"
-              id="female"
-              name="gender"
-              value="female"
-              checked={formData.gender === "female"}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="female" style={{ color: "black" }}>
-              Female
-            </label>
-            <input
-              type="radio"
-              id="other"
-              name="gender"
-              value="other"
-              checked={formData.gender === "other"}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="other" style={{ color: "black" }}>
-              Other
-            </label>
-            <button
-                  type="submit"
-                       className="signup-button"
-                           disabled={isLoading}>
-                              {isLoading ? (
-                            <div className="loading-spinner"></div>
-                               ) : (
-                                    "Sign Up"
-                                    )}
-            </button>
-
-            {/* Link to Login Page */}
-            <Link to="/user/login" className="login-link">
-              Already have an account? Log in
-            </Link>
-          </form>
+    <>
+      <div align="center">
+       <div className="y">
+        <nav className="r">
+        <ul className="z">
+        <Link to="#" style={{ padding: "1rem" }}>
+          <button class="x">Home</button>
+        </Link>
+        <Link to="#" style={{ padding: "1rem" }}>
+          <button class="x">Job Notification</button>
+        </Link>
+          <Link to="/user/about" style={{ padding: "1rem" }}>
+          <button class="x">About</button>
+        </Link>
+        <Link to="/user/Contactus" style={{ padding: "1rem" }}>
+          <button class="x">Contactus</button>
+        </Link>
+        <Link to="/user/login" style={{ padding: "1rem" }}>
+          <button class="x">Login</button>
+        </Link>
+        <Link to="/user/Signup" style={{ padding: "1rem" }}>
+          <button class="x">Signup</button>
+          </Link>
+          </ul>
+        </nav>
         </div>
+        <h1 class="s19">Find Your Dream Job Now</h1>
+        <div class="search-container">
+    <input type="text" class="search-input" placeholder="Search..." />
+    <button class="search-button">Search..</button>
+    
+    <div class="comp1" id="resume">
+        <h1>lets build your your resume with us</h1> 
+        
+        <img src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"></img>
+        <Link to="/user/Resumebuilder" style={{ padding: "1rem" }}>
+        <button class="color-button">Build Here!</button>
+        </Link>
       </div>
+
+    <h1 className="s19"> Mnc's are</h1>
+    <div id="mnc" class="comp">
+      <img src="https://tse4.mm.bing.net/th?id=OIP.hqlEgjzfmrQlz9ytIj_35AHaD4&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse1.mm.bing.net/th?id=OIP.sa0ouSAH7lzyGOF_Nwd0wAHaHa&pid=Api&P=0&h=180" class="img" ></img>
+      <img src="https://tse3.mm.bing.net/th?id=OIP.bN5MH5e96LBoQ_Qg6FyE2QHaD4&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse2.explicit.bing.net/th?id=OIP.-qsHehf9bna9qR0ScEFP7gHaDA&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse4.mm.bing.net/th?id=OIP.tqnDSI4pjyspG261hTWJrgHaCV&pid=Api&P=0&h=180" class="img"></img>
     </div>
+    <h1 className="s19">banks are..</h1>
+    <div class="comp">
+      <img src="https://tse2.mm.bing.net/th?id=OIP.P4OzVWoKPweMZWE0Fy8S5gHaHa&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse1.mm.bing.net/th?id=OIP.ILNVyup3yzAhgvBXXoCK6QHaEA&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse3.mm.bing.net/th?id=OIP.BCuckS23S-lXTjeom_OE2AHaFj&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse1.mm.bing.net/th?id=OIP.YLJknnleGzQxjWVDEEZ5cAHaD4&pid=Api&P=0&h=180" class="img"></img>
+    </div>
+    <h1 className="s19">Startup Companies are..</h1>
+    <div class="comp">
+      <img src="https://tse4.mm.bing.net/th?id=OIP.x-pEEl9dQbh8D3_OOv4pLQHaEK&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse4.mm.bing.net/th?id=OIP.7PjwWLznjpirkH8m3EXAAgHaB7&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse3.mm.bing.net/th?id=OIP.ZpCHzjf3ewOJ-YXO4wocdgAAAA&pid=Api&P=0&h=180" class="img"></img>
+      <img src="https://tse3.mm.bing.net/th?id=OIP.0y2SHRETO-JhAUINvlo7LQHaCO&pid=Api&P=0&h=180" class="img"></img>
+      </div>
+</div>
+</div> 
+    </>
   );
 };
 
-export default Signup;
+export default IntroPage;
